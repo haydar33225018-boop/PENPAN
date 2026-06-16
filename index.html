@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="jv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesona Wayang Orang - Panggung Kabudayan Jawi</title>
+    <!-- Tailwind CSS untuk tata letak modern dan responsif -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts untuk nuansa klasik Jawa (Cinzel & Plus Jakarta Sans) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .font-jawa {
+            font-family: 'Cinzel', serif;
+        }
+        /* Custom scrollbar untuk kenyamanan visual */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: rgba(245, 158, 11, 0.3);
+            border-radius: 10px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-[#120a06] min-h-screen text-slate-100 transition-colors duration-500 overflow-x-hidden selection:bg-amber-600 selection:text-white relative custom-scrollbar">
+
+    <!-- Wara-wara Kustom / Toast Notifikasi -->
+    <div id="custom-toast" class="fixed top-5 right-5 z-50 transform translate-y-[-150%] transition-transform duration-300 bg-amber-600 text-stone-950 px-6 py-3 rounded-xl shadow-2xl flex flex-col gap-0.5 border border-amber-400">
+        <span id="toast-message-jv" class="text-sm font-bold">Rahayu! Sugeng rawuh ing Panggung Wayang Orang Jawi.</span>
+        <span id="toast-message-id" class="text-[10px] text-stone-900 font-medium italic">(Rahayu! Selamat datang di Panggung Wayang Orang Jawa.)</span>
+    </div>
+
+    <!-- Background Ornamen Klasik Sogan lan Gunungan (Lapisan Dasar) -->
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-amber-950/30 via-[#120a06]/90 to-[#120a06] pointer-events-none z-0"></div>
+
+    <!-- ========================================== -->
+    <!-- 1. KACA UTAMA (LANDING / SELECTION)        -->
+    <!-- ========================================== -->
+    <div id="landing-page" class="relative z-10 min-h-screen flex flex-col justify-between p-6 md:p-12 transition-all duration-500 overflow-hidden">
+        
+        <!-- Lapisan Foto Latar Teater Kustom -->
+        <div id="landing-bg-image" class="absolute inset-0 z-0 bg-cover bg-center opacity-25 transition-all duration-700" style="background-image: url('https://images.unsplash.com/photo-1514306191717-452ec28c7814?auto=format&fit=crop&w=1200&q=80');"></div>
+        <!-- Lapisan Gradasi Gelap supaya teks mudah dibaca -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-[#120a06] z-0 pointer-events-none"></div>
+
+        <!-- Tombol Pengatur Latar Teater (Wonten ing Kaca Utama) -->
+        <button onclick="bukaEditorLatar()" class="absolute top-6 right-6 z-20 bg-stone-900/90 border border-amber-500/30 px-4 py-2 rounded-xl text-xs text-amber-400 font-bold flex flex-col items-center gap-0.5 hover:bg-amber-950/40 transition-colors shadow-lg">
+            <span>⚙️ Pranata Latar Teater</span>
+            <span class="text-[9px] text-stone-400 font-normal italic">(Pengaturan Latar Teater)</span>
+        </button>
+
+        <!-- Header Utama -->
+        <header class="text-center max-w-3xl mx-auto mt-10 relative z-10">
+            <!-- Lambang Gunungan Wayang SVG -->
+            <div class="w-24 h-24 mx-auto mb-4 text-amber-500 drop-shadow-[0_0_8px_rgba(245,158,11,0.4)]">
+                <svg viewBox="0 0 100 120" fill="currentColor" class="w-full h-full">
+                    <path d="M50 5 L90 75 C92 78, 88 95, 75 95 L50 110 L25 95 C12 95, 8 78, 10 75 Z M50 15 L18 73 C22 75, 45 80, 50 82 C55 80, 78 75, 82 73 Z" opacity="0.15"/>
+                    <path d="M50 10 L85 75 C87 78, 83 92, 70 92 L50 105 L30 92 C17 92, 13 78, 15 75 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+                    <path d="M50 10 L50 105 M35 60 Q50 40 65 60 M25 75 Q50 55 75 75" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2"/>
+                </svg>
+            </div>
+            <div class="inline-flex flex-col items-center px-4 py-1.5 bg-amber-500/10 border border-amber-500/30 text-amber-400 rounded-full text-xs font-semibold tracking-wider uppercase mb-6">
+                <span>NGURI-URI KABUDAYAN · WAYANG ORANG JAWI</span>
+                <span class="text-[9px] text-amber-550/80 font-normal italic lowercase mt-0.5">(melestarikan kebudayaan · wayang orang jawa)</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black tracking-wide text-stone-100 mb-4 font-jawa">
+                PANGGUNG <span class="bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500 bg-clip-text text-transparent">WAYANG ORANG</span>
+            </h1>
+            <p class="text-stone-400 text-base md:text-lg leading-relaxed max-w-xl mx-auto mb-2">
+                Mirsani kaendahan teater tari tradisional Jawi ingkang adi luhung, kebak piwulang luhur lan tuntunan urip saking agunging carios Mahabharata.
+            </p>
+            <p class="text-stone-400 text-xs md:text-sm italic max-w-xl mx-auto">
+                Menyaksikan keindahan teater tari tradisional Jawa yang adiluhung, penuh ajaran luhur dan tuntunan hidup dari keagungan kisah Mahabharata.
+            </p>
+        </header>
+
+        <!-- Area Rong Pilihan Utama -->
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto w-full my-8 relative z-10 px-4">
+            
+            <!-- PILIHAN 1: Sinau Wayang Orang -->
+            <div onclick="bukaEdukasiWayang()" class="group relative bg-[#1c120c]/90 backdrop-blur-md border-2 border-double border-amber-500/30 hover:border-amber-400 rounded-3xl p-8 shadow-xl hover:shadow-[0_0_30px_rgba(245,158,11,0.25)] transition-all duration-500 cursor-pointer flex flex-col justify-between overflow-hidden">
+                <div class="absolute top-2 left-2 w-6 h-6 border-t-2 border-l-2 border-amber-500/60 opacity-60 group-hover:opacity-100 transition-opacity"></div>
+                <div class="absolute top-2 right-2 w-6 h-6 border-t-2 border-r-2 border-amber-500/60 opacity-60 group-hover:opacity-100 transition-opacity"></div>
+                <div class="absolute bottom-2 left-2 w-6 h-6 border-b-2 border-l-2 border-amber-500/60 opacity-60 group-hover:opacity-100 transition-opacity"></div>
+                <div class="absolute bottom-2 right-2 w-6 h-6 border-b-2 border-r-2 border-amber-500/60 opacity-60 group-hover:opacity-100 transition-opacity"></div>
+                
+                <div class="absolute -right-24 -top-24 w-60 h-60 bg-gradient-to-br from-amber-500/10 to-transparent rounded-full blur-3xl opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div class="relative z-10">
+                    <div class="w-16 h-16 bg-gradient-to-br from-amber-500/20 to-stone-900 border border-amber-500/40 text-amber-400 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 group-hover:shadow-[0_0_15px_rgba(245,158,11,0.3)] transition-all duration-500">
+                        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5" class="w-10 h-10 drop-shadow-[0_0_3px_rgba(245,158,11,0.5)]">
+                            <path d="M20 75 Q50 82 80 75" stroke-linecap="round"/>
+                            <path d="M22 67 Q50 74 78 67" stroke-linecap="round"/>
+                            <path d="M20 75 L15 50 L32 63 L50 25 L68 63 L85 50 L80 75 Z" fill="currentColor" fill-opacity="0.15" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="50" cy="50" r="5" fill="currentColor"/>
+                            <path d="M50 25 L50 15" stroke-linecap="round"/>
+                            <circle cx="50" cy="12" r="3" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    
+                    <h3 class="text-2.5xl font-bold text-amber-100 mb-2 font-jawa tracking-wider group-hover:text-amber-300 transition-colors">Sinau Wayang Orang</h3>
+                    <h4 class="text-xs text-amber-550/85 italic font-medium mb-4 -mt-1">(Belajar Wayang Orang)</h4>
+                    <p class="text-stone-300 leading-relaxed text-sm mb-4">
+                        Sinau sejarah teater klasik Jawi saking wiracarita Mahabharata, mirsani lakon fragmen tari panggung ingkang sakral, lan kenal luwih cedhak kaliyan para paraga ksatria Pandawa Lima.
+                    </p>
+                    <p class="text-stone-500 italic text-xs leading-relaxed border-l border-amber-500/30 pl-2">
+                        Mempelajari sejarah teater klasik Jawa dari wiracarita Mahabharata, menyaksikan lakon fragmen tari panggung yang sakral, dan mengenal lebih dekat para tokoh ksatria Pandawa Lima.
+                    </p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mt-6 pt-4 border-t border-amber-500/10 relative z-10">
+                    <span class="text-amber-400 font-bold text-sm group-hover:translate-x-3 transition-transform duration-500 flex flex-col items-start gap-0.5">
+                        <span>Mlebu Pendopo Sinau &raquo;</span>
+                        <span class="text-[10px] text-amber-550/75 font-normal italic lowercase">(masuk pendopo belajar &raquo;)</span>
+                    </span>
+                    <span class="self-start text-[10px] bg-amber-500/10 text-amber-300 border border-amber-500/30 px-3.5 py-1 rounded-full font-semibold">Kitab & Panggung</span>
+                </div>
+            </div>
+
+            <!-- PILIHAN 2: Game Tebak Tokoh Wayang -->
+            <div onclick="bukaGameWayang()" class="group relative bg-[#23120b]/90 backdrop-blur-md border-2 border-double border-orange-700/30 hover:border-orange-500 rounded-3xl p-8 shadow-xl hover:shadow-[0_0_30px_rgba(234,88,12,0.2)] transition-all duration-500 cursor-pointer flex flex-col justify-between overflow-hidden">
+                <div class="absolute top-2 left-2 w-6 h-6 border-t-2 border-l-2 border-orange-500/60 opacity-60 group-hover:opacity-100 transition-opacity"></div>
+                <div class="absolute top-2 right-2 w-6 h-6 border-t-2 border-r-2 border-orange-500/60 opacity-60 group-hover:opacity-100 transition-opacity"></div>
+                <div class="absolute bottom-2 left-2 w-6 h-6 border-b-2 border-l-2 border-orange-500/60 opacity-60 group-hover:opacity-100 transition-opacity"></div>
+                <div class="absolute bottom-2 right-2 w-6 h-6 border-b-2 border-r-2 border-orange-500/60 opacity-60 group-hover:opacity-100 transition-opacity"></div>
+                
+                <div class="absolute -right-24 -top-24 w-60 h-60 bg-gradient-to-br from-orange-500/10 to-transparent rounded-full blur-3xl opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                <div class="relative z-10">
+                    <div class="w-16 h-16 bg-gradient-to-br from-orange-500/20 to-stone-900 border border-orange-500/40 text-orange-400 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 group-hover:shadow-[0_0_15px_rgba(234,88,12,0.3)] transition-all duration-500">
+                        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5" class="w-10 h-10 drop-shadow-[0_0_3px_rgba(234,88,12,0.5)]">
+                            <line x1="50" y1="15" x2="50" y2="85" stroke-linecap="round"/>
+                            <path d="M50 15 Q15 50 50 85" stroke-linecap="round" stroke-linejoin="round"/>
+                            <line x1="20" y1="50" x2="80" y2="50" stroke-linecap="round"/>
+                            <path d="M70 42 L82 50 L70 58" stroke-linecap="round" stroke-linejoin="round" fill="currentColor" fill-opacity="0.15"/>
+                            <path d="M20 45 L14 50 L20 55" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M26 45 L20 50 L26 55" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+
+                    <h3 class="text-3xl font-bold text-orange-100 mb-2 font-jawa tracking-wider group-hover:text-orange-300 transition-colors">Batangan Paraga</h3>
+                    <h4 class="text-xs text-orange-450/85 italic font-medium mb-4 -mt-1">(Tebak Tokoh Wayang)</h4>
+                    <p class="text-stone-300 leading-relaxed text-sm mb-4">
+                        Uji katentreman lan ketajaman mripat panjenengan! Tebak foto pertunjukan wayang wong Mahabharata kanthi leres lan pecahaken teka-teki paraga ksatria sarta ratu.
+                    </p>
+                    <p class="text-stone-500 italic text-xs leading-relaxed border-l border-orange-500/30 pl-2">
+                        Uji ketenangan dan ketajaman mata Anda! Tebak foto pertunjukan wayang orang Mahabharata dengan benar dan percahkan teka-teki tokoh ksatria serta raja.
+                    </p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mt-6 pt-4 border-t border-orange-500/10 relative z-10">
+                    <span class="text-orange-400 font-bold text-sm group-hover:translate-x-3 transition-transform duration-500 flex flex-col items-start gap-0.5">
+                        <span>Mulai Bedhekan Tokoh &raquo;</span>
+                        <span class="text-[10px] text-orange-500/75 font-normal italic lowercase">(mulai tebak tokoh &raquo;)</span>
+                    </span>
+                    <span class="self-start text-[10px] bg-orange-500/10 text-orange-300 border border-orange-500/30 px-3.5 py-1 rounded-full font-semibold">Uji Wawasan</span>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Panel Editor Latar Teater Modal (Kaca Utama) -->
+        <div id="latar-editor-panel" class="hidden absolute inset-0 bg-stone-950/95 z-50 p-6 md:p-8 flex flex-col justify-center items-center backdrop-blur-sm">
+            <div class="bg-stone-900 border border-amber-500/30 rounded-3xl p-6 md:p-8 max-w-lg w-full space-y-6 relative shadow-2xl">
+                <button onclick="tutupEditorLatar()" class="absolute top-4 right-4 text-stone-400 hover:text-white font-bold text-xs uppercase bg-stone-950 px-2.5 py-1 rounded border border-stone-850">Batal / Cancel ✖</button>
+                
+                <h3 class="text-xl font-bold font-jawa text-amber-400 flex flex-col gap-0.5">
+                    <span>⚙️ Pranata Foto Latar Teater</span>
+                    <span class="text-xs text-amber-550/80 font-normal italic lowercase">(Pengaturan Foto Latar Teater)</span>
+                </h3>
+                <p class="text-xs text-stone-400 leading-relaxed">
+                    Lebaken URL foto panggung teater wayang kustom saking internet wonten ing kolom ngisor iki kangge nggantos gambar latar wingking kaca utama panjenengan:
+                    <br><span class="italic text-stone-500">(Masukkan URL foto panggung teater wayang kustom dari internet pada kolom di bawah untuk mengganti gambar latar belakang halaman utama Anda:)</span>
+                </p>
+
+                <form onsubmit="simpanLatarEditor(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-[11px] font-bold text-stone-400 uppercase tracking-wider mb-2">Tautan URL Foto Latar / Tautan URL Foto Latar</label>
+                        <input type="text" id="edit-latar-url" value="" required
+                               class="w-full px-3 py-3 bg-stone-950 border border-stone-800 focus:outline-none focus:border-amber-500 text-xs rounded-xl text-slate-300">
+                    </div>
+
+                    <div class="pt-2 flex gap-3">
+                        <button type="submit" class="flex-1 py-3 bg-amber-500 hover:bg-amber-400 text-stone-950 font-black rounded-xl text-xs transition-all shadow-lg shadow-amber-500/20">
+                            Simpen & Trapaken Latar / Simpan & Terapkan Latar
+                        </button>
+                        <button type="button" onclick="resetLatarDefault()" class="px-5 py-3 bg-stone-950 border border-stone-800 text-stone-300 font-bold rounded-xl text-xs hover:text-white transition-all">
+                            Gawan / Default
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="text-center text-stone-500 text-sm mt-8 border-t border-stone-900 pt-6 relative z-10">
+            &copy; 2026 NiagaKita - Pusaka Kabudayan Jawi Jumeneng Adi Luhung (Pusaka Kebudayaan Jawa Berdiri Adiluhung).
+        </footer>
+    </div>
+
+
+    <!-- ========================================== -->
+    <!-- 2. KACA SINAU (INFORMASI & VIDEO)          -->
+    <!-- ========================================== -->
+    <div id="edukasi-view" class="hidden min-h-screen p-4 md:p-12 max-w-6xl mx-auto flex flex-col justify-center relative z-10">
+        <!-- Tombol Wangsul -->
+        <button onclick="kembaliKeUtama()" class="self-start flex flex-col items-start text-amber-400 font-semibold hover:text-amber-300 transition-colors mb-6 group bg-stone-900/50 p-2.5 rounded-xl border border-stone-850">
+            <span class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 group-hover:-translate-x-1 transition-transform">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+                </svg>
+                Wangsul dhateng Menu Utama
+            </span>
+            <span class="text-[10px] text-amber-550/75 italic ml-7 -mt-1">(Kembali ke Menu Utama)</span>
+        </button>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <!-- Kolom Kiwa: Teater Video Player & Playlist -->
+            <div class="lg:col-span-7 bg-stone-900/90 rounded-3xl p-6 border border-stone-800 shadow-2xl space-y-6">
+                <div>
+                    <h2 class="text-3xl font-bold text-white font-jawa mb-1">Fragmen Tari Wayang Orang</h2>
+                    <p class="text-stone-400 text-xs italic mb-2">(Kepingan Rekaman Tari Wayang Orang)</p>
+                    <p class="text-stone-400 text-sm">Pementasan sandiwara teater tari tradisional Jawi ingkang ngangkat carios-carios epos kuno ingkang adiluhung saking Mahabharata.</p>
+                    <p class="text-stone-500 text-xs italic mt-1">Pementasan drama teater tari tradisional Jawa yang mengangkat kisah-kisah epos kuno yang adiluhung dari Mahabharata.</p>
+                </div>
+                
+                <!-- Video Teater Player Box (HANYA THUMBNAIL INTERAKTIF - CSP COMPLIANT) -->
+                <div class="relative bg-black aspect-video rounded-2xl border border-amber-500/20 flex flex-col items-center justify-center overflow-hidden shadow-2xl group">
+                    
+                    <!-- Area Thumbnail Dinamis (Diberi Poster Awal yang Menawan agar Tidak Kosong Sejak Awal) -->
+                    <div id="video-thumbnail-container" class="absolute inset-0 z-10 transition-transform duration-500 group-hover:scale-105">
+                        <img id="main-video-img" src="https://images.unsplash.com/photo-1514306191717-452ec28c7814?auto=format&fit=crop&w=800&q=80" alt="Lakon Wayang Orang" class="w-full h-full object-cover">
+                    </div>
+
+                    <!-- Overlay Gradasi Gelap lan Tombol Play (Interaktif) -->
+                    <a id="video-play-link" href="https://www.youtube.com/watch?v=lEXNXbvQ1IY" target="_blank" class="absolute inset-0 z-20 bg-gradient-to-t from-black/80 via-black/20 to-black/50 flex flex-col items-center justify-center text-center p-6 transition-opacity duration-300 group-hover:bg-black/60">
+                        <!-- Tombol Play Bulat -->
+                        <div class="w-20 h-20 bg-amber-500/90 group-hover:bg-amber-400 text-stone-950 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(245,158,11,0.5)] transform group-hover:scale-110 transition-all duration-300 mb-5 border-4 border-white/20">
+                            <svg fill="currentColor" viewBox="0 0 24 24" class="w-10 h-10 ml-1.5">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                        
+                        <!-- Informasi Video ing Layar -->
+                        <div class="max-w-md">
+                            <p id="display-video-title" class="text-xl md:text-2xl font-bold text-white tracking-wide font-jawa drop-shadow-md">Pandawa Nawasena - WO Bharata</p>
+                            <p id="display-video-source" class="text-xs text-amber-300 mt-1.5 font-medium bg-black/40 px-3 py-1 rounded-full inline-block border border-amber-500/20">Sumber: Bakti Budaya Djarum Foundation</p>
+                        </div>
+
+                        <!-- Label Ajakan Klik -->
+                        <span class="absolute bottom-4 right-4 text-[10px] text-amber-300 font-black uppercase tracking-widest bg-red-700 px-3 py-1 rounded-lg shadow-md border border-red-500 animate-pulse">
+                            Muter ing YouTube ↗
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Playlist Selektor Video Fragmen -->
+                <div>
+                    <h3 class="text-sm font-bold text-amber-400 uppercase tracking-wider mb-2">Pilih Fragmen Tari Jawi / Pilihlah Fragmen Tari Jawa:</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2" id="video-playlist-container">
+                        <!-- Daftar Playlist Video dirénder liwat JS -->
+                    </div>
+                </div>
+
+                <div class="border-t border-stone-800 pt-4">
+                    <h3 class="text-lg font-bold text-amber-400 mb-2">Sejarah lan Filosofi Wayang Orang Mahabharata</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed text-justify mb-4">
+                        Wayang Wong utawi Wayang Orang punika teater tari tradisional Jawi ingkang miyos saking lingkungan kraton. Seni punika nggabungaken drama, tari klasik, busana prada endah, lan iringan musik gamelan laras pelog utawi slendro. Saben gerakan nggadahi sasmita lan piwulang luhur ngenani kautaman urip ingkang dipunwarisaken saking agunging kitab Mahabharata.
+                    </p>
+                    <p class="text-stone-500 text-xs leading-relaxed text-justify italic border-l-2 border-amber-500/50 pl-3">
+                        <strong class="text-amber-500/80 not-italic uppercase block text-[10px] font-bold mb-1">Terjemahan Indonesia:</strong>
+                        Wayang Wong atau Wayang Orang adalah teater tari tradisional Jawa yang lahir dari lingkungan keraton. Seni ini menggabungkan drama, tari klasik, busana prada yang indah, dan iringan musik gamelan laras pelog atau slendro. Setiap gerakan memiliki makna dan ajaran luhur mengenai keutamaaan hidup yang diwarisakan dari keagungan kisah Mahabharata.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Kolom Tengen: Ensiklopedia & Gambar Tokoh -->
+            <div class="lg:col-span-5 space-y-6">
+                <div class="bg-gradient-to-br from-stone-900 to-[#1c120c] rounded-3xl p-6 border border-amber-500/20 shadow-2xl">
+                    <h3 class="text-xl font-bold text-white font-jawa mb-1 flex items-center gap-2">
+                        <span class="text-2xl">👑</span> Pandawa Lima
+                    </h3>
+                    <p class="text-xs text-stone-400 mb-4 italic">(Ksatria Pandawa Lima)</p>
+                    <p class="text-xs text-stone-400 mb-4">Pilih paraga ing ngisor iki kangge mirsani rupa lan piwulang luhuripun / Pilih tokoh di bawah ini untuk melihat rupa dan ajaran luhurnya:</p>
+
+                    <!-- Navigasi Tokoh Pandawa Lima (Grid 5 Kolom) -->
+                    <div class="grid grid-cols-5 gap-1 mb-6">
+                        <button onclick="tampilInfoKsatria('Yudhistira')" id="tab-Yudhistira" class="py-2 px-1 text-[10px] font-bold rounded-lg bg-amber-500 text-stone-950 transition-all border border-amber-400 shadow-md truncate">Yudhistira</button>
+                        <button onclick="tampilInfoKsatria('Bima')" id="tab-Bima" class="py-2 px-1 text-[10px] font-bold rounded-lg bg-stone-950 text-amber-400 hover:bg-stone-900 transition-all border border-stone-800 truncate">Bima</button>
+                        <button onclick="tampilInfoKsatria('Arjuna')" id="tab-Arjuna" class="py-2 px-1 text-[10px] font-bold rounded-lg bg-stone-950 text-amber-400 hover:bg-stone-900 transition-all border border-stone-800 truncate">Arjuna</button>
+                        <button onclick="tampilInfoKsatria('Nakula')" id="tab-Nakula" class="py-2 px-1 text-[10px] font-bold rounded-lg bg-stone-950 text-amber-400 hover:bg-stone-900 transition-all border border-stone-800 truncate">Nakula</button>
+                        <button onclick="tampilInfoKsatria('Sadewa')" id="tab-Sadewa" class="py-2 px-1 text-[10px] font-bold rounded-lg bg-stone-950 text-amber-400 hover:bg-stone-900 transition-all border border-stone-800 truncate">Sadewa</button>
+                    </div>
+
+                    <!-- Gambar Tokoh Asli -->
+                    <div class="bg-stone-950 rounded-2xl p-4 border border-stone-800 flex flex-col items-center justify-center min-h-[220px]">
+                        <!-- Panggonan Foto Dinamis -->
+                        <div id="visual-ksatria-svg" class="w-full text-center">
+                            <!-- Foto Yudhistira Default -->
+                        </div>
+                        
+                        <!-- Informasi Detail Tokoh -->
+                        <div class="text-center w-full mt-2">
+                            <h4 id="nama-ksatria" class="text-lg font-bold text-amber-400 mb-1 font-jawa">Raden Puntadewa</h4>
+                            <div class="inline-block bg-amber-500/10 text-amber-300 text-[10px] px-2.5 py-0.5 rounded-full border border-amber-500/20 mb-3" id="senjata-ksatria">
+                                Pusaka: Jamus Kalimasada
+                            </div>
+                            <p id="deskripsi-ksatria" class="text-xs text-stone-400 leading-relaxed text-justify px-2">
+                                Raja pambajeng Pandawa ingkang jumeneng nata wonten ing Amarta. Nggadahi watak sabar, jujur, mboten nate duka, lan nggadahi rah pethak (darah putih) pratandha suci lahir lan batinipun.<br><br><span class='text-amber-500/80 block font-semibold text-[10px] uppercase mb-1'>Terjemahan Indonesia:</span><span class='italic text-stone-400'>Raja tertua Pandawa yang bertakhta di Amarta. Memiliki watak sabar, jujur, tidak pernah marah, dan memiliki darah putih sebagai pertanda suci lahir dan batinnya.</span>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ========================================== -->
+    <!-- 3. KACA GAME (TEBAK TOKOH / BEDHEKAN)      -->
+    <!-- ========================================== -->
+    <div id="game-view" class="hidden min-h-screen p-4 md:p-12 max-w-4xl mx-auto flex flex-col justify-start relative z-10">
+        <!-- Header Game & Navigasi RAPIH -->
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-6 w-full relative z-20">
+            <!-- Sisi Kiri: Tombol Kembali -->
+            <button onclick="keluarGameDanReset()" class="flex flex-col items-start text-amber-400 font-semibold hover:text-amber-300 transition-colors group self-start md:self-auto">
+                <span class="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 group-hover:-translate-x-1 transition-transform">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+                    </svg>
+                    Wangsul dhateng Utama
+                </span>
+                <span class="text-[10px] text-amber-550/75 italic ml-7 -mt-1">(Kembali ke Utama)</span>
+            </button>
+            
+            <!-- Sisi Tengah: Judul Game -->
+            <div class="text-center font-jawa text-lg text-amber-400 tracking-wider font-bold">
+                📖 UJI WAWASAN PARAGA 📖
+                <div class="text-[10px] text-amber-550/80 font-normal tracking-normal italic mt-0.5">(Uji Wawasan Tokoh)</div>
+            </div>
+
+            <!-- Sisi Kanan: Penyeimbang Desain di Desktop -->
+            <div class="hidden md:block w-40"></div>
+        </div>
+
+        <!-- Tampilan Utama Area Kuis -->
+        <div class="bg-[#1c120c] border-2 border-double border-amber-500/30 rounded-3xl p-6 md:p-8 shadow-2xl flex flex-col items-center relative overflow-hidden">
+            
+            <!-- Dashboard Game Terintegrasi -->
+            <div class="w-full max-w-lg flex flex-col sm:flex-row justify-between items-center bg-black/50 border border-amber-500/15 rounded-2xl p-3 mb-4 gap-3">
+                <!-- Status Progres -->
+                <div class="text-left text-xs text-stone-400 self-start sm:self-auto">
+                    <span id="kuis-progress-text" class="font-bold text-amber-100">Pitakonan 1 saking 10</span>
+                    <span class="text-[9px] text-stone-550 block italic leading-none">(Pertanyaan 1 dari 10)</span>
+                </div>
+                <!-- Indikator Nyawa -->
+                <div class="flex items-center gap-1.5 bg-stone-950/80 px-4 py-1.5 rounded-full border border-stone-850 shadow-inner">
+                    <span class="text-stone-400 text-[9px] uppercase font-bold tracking-wider mr-1">Nyawa:</span>
+                    <span id="kuis-nyawa-hearts" class="text-rose-500 tracking-widest text-sm select-none">❤️❤️❤️</span>
+                </div>
+                <!-- Status Nilai -->
+                <div class="text-right text-xs self-end sm:self-auto">
+                    <span class="text-amber-400 font-extrabold block text-sm" id="skor-kuis-sekarang">Nilai: 0</span>
+                    <span class="text-[9px] text-stone-550 italic block leading-none">(skor)</span>
+                </div>
+            </div>
+
+            <!-- Layar Hasil Kuis -->
+            <div id="kuis-result-screen" class="hidden absolute inset-0 bg-[#120a06]/98 z-30 flex flex-col items-center justify-center p-8 text-center space-y-6 overflow-y-auto backdrop-blur-md">
+                <span id="kuis-result-icon" class="text-7xl animate-bounce">🏆</span>
+                <h3 id="kuis-result-title" class="text-3xl font-black font-jawa text-amber-400">Asil Evaluasi Kabudayan</h3>
+                <h4 id="kuis-result-subtitle" class="text-xs text-amber-555/80 italic font-medium -mt-5">(Hasil Evaluasi Kebudayaan)</h4>
+                
+                <div class="bg-stone-900 border border-stone-800 rounded-2xl p-4 max-w-md w-full shadow-2xl space-y-4">
+                    <div>
+                        <p class="text-slate-400 text-[10px] md:text-xs">Nilai Pungkasan Panjenengan / Nilai Akhir Anda</p>
+                        <p id="kuis-final-score" class="text-4xl font-black text-amber-400">100</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-teal-400 uppercase tracking-widest font-bold">Gelar Kabudayan / Gelar Kebudayaan</p>
+                        <p id="kuis-final-rank" class="text-sm font-bold text-white italic">"Cantrik Kabudayan"</p>
+                    </div>
+                </div>
+
+                <button onclick="mulaiKuisUlang()" class="px-8 py-3 bg-teal-500 hover:bg-teal-400 text-stone-950 font-black rounded-xl shadow-lg shadow-teal-500/20 transform hover:scale-105 transition-all duration-300 flex flex-col items-center">
+                    <span>Mulai Bedhekan Anyar</span>
+                    <span class="text-[10px] text-stone-900 font-semibold italic">(Mulai Tebakan Baru)</span>
+                </button>
+            </div>
+
+            <!-- Bagian Dhuwur: Gambar Wayang lan Indikator Pitakonan -->
+            <div class="w-full max-w-lg flex flex-col items-center space-y-4">
+                
+                <!-- Indikator Angka Waktu Sisa -->
+                <div class="w-full flex justify-between items-center text-xs text-stone-400">
+                    <span class="text-[10px] text-stone-550 uppercase tracking-wider">Kemajuan Kuis (Progres)</span>
+                    <span class="text-amber-400 font-extrabold flex items-center gap-1 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
+                        ⏰ <span id="kuis-timer-text" class="text-lg text-white">15</span> Detik
+                        <span class="text-[9px] text-stone-550 font-normal italic lowercase leading-none">(waktu sisa)</span>
+                    </span>
+                </div>
+
+                <!-- Progress Bar visual kuis -->
+                <div class="h-1.5 w-full bg-stone-950 rounded-full overflow-hidden border border-stone-800">
+                    <div id="kuis-progress-bar" class="h-full bg-amber-500 w-1/5 transition-all duration-300"></div>
+                </div>
+
+                <!-- Progress Bar visual TIMER (Waktu) -->
+                <div class="h-1.5 w-full bg-stone-950 rounded-full overflow-hidden border border-stone-900/50">
+                    <div id="kuis-timer-bar" class="h-full bg-gradient-to-r from-red-500 via-orange-500 to-amber-400 w-full transition-all duration-1000 ease-linear"></div>
+                </div>
+
+                <!-- Bingkai Foto Tokoh -->
+                <div class="relative w-full h-64 md:h-80 overflow-hidden rounded-2xl border-2 border-amber-500/30 bg-stone-950 flex items-center justify-center group shadow-xl">
+                    <img id="kuis-foto-tokoh" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=600&q=80" alt="" class="w-full h-full object-cover object-top transition-transform duration-500 animate-fade-in">
+                    <!-- Fallback placeholder yang aman -->
+                    <div id="kuis-foto-fallback" class="hidden absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-[#170e0a] z-10">
+                        <svg class="w-16 h-16 text-amber-500/30 animate-pulse mb-3" viewBox="0 0 100 120" fill="currentColor">
+                            <path d="M50 5 L90 75 C92 78, 88 95, 75 95 L50 110 L25 95 C12 95, 8 78, 10 75 Z" opacity="0.15"/>
+                            <path d="M50 10 L85 75 C87 78, 83 92, 70 92 L50 105 L30 92 C17 92, 13 78, 15 75 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <span class="text-xs text-stone-500 font-bold">[ Foto Wayang Offline / Foto Offline ]</span>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-transparent opacity-60 pointer-events-none"></div>
+                </div>
+
+                <!-- Pitedah / Clue Tokoh -->
+                <div class="w-full bg-stone-950/80 p-3.5 rounded-xl border border-stone-800 text-center text-xs text-stone-300 italic flex flex-col gap-1 shadow-inner">
+                    <span id="kuis-petunjuk">"Mirsani paraga wayang..."</span>
+                    <span id="kuis-petunjuk-id" class="text-[11px] text-stone-550 font-normal">"(Memperhatikan tokoh wayang...)"</span>
+                </div>
+            </div>
+
+            <!-- Kancing Bantuan (LIFELINES PANEL) -->
+            <div class="w-full max-w-lg mt-4 border-t border-b border-amber-500/10 py-3">
+                <p class="text-[10px] text-amber-555 uppercase text-center tracking-wider mb-2">
+                    Kancing Pitulungan / Tombol Bantuan (Lifelines)
+                </p>
+                <div class="grid grid-cols-3 gap-2">
+                    <!-- Bantuan 1: 50/50 -->
+                    <button id="btn-lifeline-fifty" onclick="useLifelineFifty()" class="py-2 px-1.5 bg-stone-950 border border-amber-500/20 rounded-xl text-[10px] font-bold text-amber-400 hover:bg-amber-950/10 hover:border-amber-400 transition-all flex flex-col items-center shadow">
+                        <span class="text-base mb-0.5">✂️</span>
+                        <span>Bantuan 50:50</span>
+                        <span class="text-[8px] text-stone-500 font-medium italic lowercase leading-none mt-0.5">(buang 2 salah)</span>
+                    </button>
+                    <!-- Bantuan 2: Clue Tambahan -->
+                    <button id="btn-lifeline-clue" onclick="useLifelineClue()" class="py-2 px-1.5 bg-stone-950 border border-amber-500/20 rounded-xl text-[10px] font-bold text-amber-400 hover:bg-amber-950/10 hover:border-amber-400 transition-all flex flex-col items-center shadow">
+                        <span class="text-base mb-0.5">🔍</span>
+                        <span>Pitedah Ekstra</span>
+                        <span class="text-[8px] text-stone-500 font-medium italic lowercase leading-none mt-0.5">(petunjuk ekstra)</span>
+                    </button>
+                    <!-- Bantuan 3: Skip -->
+                    <button id="btn-lifeline-skip" onclick="useLifelineSkip()" class="py-2 px-1.5 bg-stone-950 border border-amber-500/20 rounded-xl text-[10px] font-bold text-amber-400 hover:bg-amber-950/10 hover:border-amber-400 transition-all flex flex-col items-center shadow">
+                        <span class="text-base mb-0.5">⏭️</span>
+                        <span>Liwati Soal</span>
+                        <span class="text-[8px] text-stone-500 font-medium italic lowercase leading-none mt-0.5">(lewati soal)</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Opsi Pilihan Jawaban (Grid 2x2) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-lg mt-4" id="kuis-options-container">
+                <!-- Tombol pilihan dirénder liwat JS -->
+            </div>
+
+            <!-- Tombol Sabanjure -->
+            <button id="btn-kuis-selanjutnya" onclick="soalSelanjutnya()" class="hidden mt-6 px-6 py-3.5 bg-amber-500 hover:bg-amber-400 text-stone-950 font-black rounded-xl transition-all shadow-md shadow-amber-500/20 flex flex-col items-center">
+                <span>Lajengaken Soal &raquo;</span>
+                <span class="text-[9px] text-stone-900 font-semibold italic lowercase">(lanjutkan soal &raquo;)</span>
+            </button>
+        </div>
+
+        <!-- ALBUM KITAB PUSAKA (CHARACTER CARD GALLERY) -->
+        <div class="mt-8 bg-stone-950/40 border border-amber-500/10 rounded-3xl p-6 w-full max-w-4xl mx-auto backdrop-blur-sm">
+            <h3 class="text-lg font-bold font-jawa text-amber-400 text-center mb-1">📖 KITAB PUSAKA PARAGA MAHABHARATA</h3>
+            <h4 class="text-center text-stone-500 text-xs italic mb-4 -mt-1">(Kitab Pusaka Tokoh Mahabharata)</h4>
+            <p class="text-xs text-stone-400 text-center mb-6 max-w-md mx-auto">
+                Mangsuli pitakonan kuis kanthi bener kangge mbukak kertu paraga Pandawa Lima lany tokoh legendaris sanesipun ing ngisor iki sacara permanen!
+                <br><span class="text-stone-500 italic">(Jawab pertanyaan kuis dengan benar untuk membuka kartu tokoh Pandawa Lima dan tokoh legendaris lainnya di bawah ini secara permanen!)</span>
+            </p>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-4 animate-fade-in" id="album-paraga-container">
+                <!-- Grid kartu album paraga kasebar lewat JS -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ========================================== -->
+    <!-- SCRIPT UTAMA (JAVASCRIPT)                  -->
+    <!-- ========================================== -->
+    <script>
+        // Database Tokoh Wayang lan Peranipun ing Wayang Orang Klasik
+        const databaseKsatria = {
+            Yudhistira: {
+                nama: "Prabu Puntadewa (Yudhistira)",
+                senjata: "Pusaka: Jamus Kalimasada",
+                desc: "Raja pambajeng Pandawa ingkang jumeneng nata wonten ing Amarta. Nggadahi watak sabar, jujur, mboten nate duka, lan nggadahi rah pethak (darah putih) pratandha suci lahir lan batinipun.<br><br><span class='text-amber-500/80 block font-semibold text-[10px] uppercase mb-1'>Terjemahan Indonesia:</span><span class='italic text-stone-400'>Raja tertua Pandawa yang bertakhta di Amarta. Memiliki watak sabar, jujur, tidak pernah marah, dan memiliki darah putih sebagai pertanda suci lahir dan batinnya.</span>",
+                foto: "https://djarumfoundation.org/webcore/files/activities/63200f4fb45ba.webp"
+            },
+            Bima: {
+                nama: "Raden Werkudara (Bima)",
+                senjata: "Pusaka: Kuku Pancanaka & Gada Rujakpolo",
+                desc: "Putra nomer kalih Pandawa ingkang gagah perkasa, jujur, lan tansah mbelani bebener. Nggadahi kasekten luar biasa lan mboten nate ngginakaken basa krama dhateng sinten kemawon kajaba dhateng Dewa Ruci.<br><br><span class='text-amber-500/80 block font-semibold text-[10px] uppercase mb-1'>Terjemahan Indonesia:</span><span class='italic text-stone-400'>Putra kedua Pandawa yang gagah perkasa, jujur, dan selalu membela kebenaran. Memiliki kesaktian luar biasa dan tidak pernah menggunakan bahasa krama (halus) kepada siapa pun kecuali kepada Dewa Ruci.</span>",
+                foto: "https://indonesiakaya.com/wp-content/uploads/2020/11/IMG8340A.jpg"
+            },
+            Arjuna: {
+                nama: "Raden Janaka (Arjuna)",
+                senjata: "Pusaka: Panah Pasupati & Busur Gandewa",
+                desc: "Putra nomer tiga Pandawa ingkang elok rupawan lan sekti mandraguna. Ahli jemparing (memanah) ingkang misuwur lan nggadahi watak asor (rendah hati), kepribadian alus, lan seneng tetulung.<br><br><span class='text-amber-500/80 block font-semibold text-[10px] uppercase mb-1'>Terjemahan Indonesia:</span><span class='italic text-stone-400'>Putra ketiga Pandawa yang berparas rupawan dan sakti mandraguna. Ahli memanah yang termasyhur dan memiliki watak rendah hati, kepribadian yang halus, serta suka menolong.</span>",
+                foto: "https://indonesiakaya.com/wp-content/uploads/2020/11/IMG19453.jpg"
+            },
+            Nakula: {
+                nama: "Raden Nakula",
+                senjata: "Keahlian: Prigel nambani lan ngrawat jaran",
+                desc: "Sedherek kembaripun Sadewa, putra saking Dewi Madrim. Nggadahi rupa bagus, watak jujur, setya, lan prigel sanget wonten ing babagan ilmu pangobatan tradisional sarta ngrawat turangga.<br><br><span class='text-amber-500/80 block font-semibold text-[10px] uppercase mb-1'>Terjemahan Indonesia:</span><span class='italic text-stone-400'>Saudara kembar Sadewa, putra dari Dewi Madrim. Memiliki rupa yang tampan, watak jujur, setia, dan sangat terampil dalam bidang ilmu pengobatan tradisional serta merawat kuda.</span>",
+                foto: "https://indonesiakaya.com/wp-content/uploads/2020/11/IMG0380.jpg"
+            },
+            Sadewa: {
+                nama: "Raden Sadewa",
+                senjata: "Keahlian: Ahli astronomi lan ilmu petungan Jawi",
+                desc: "Sedherek kembaripun Nakula. Raden Sadewa punika prigel sanget ing babagan astronomi (ilmu perbintangan), sastra, lan saged mangertosi kedadosan ingkang badhe datheng amargi pinter ilmu petungan Jawi.<br><br><span class='text-amber-500/80 block font-semibold text-[10px] uppercase mb-1'>Terjemahan Indonesia:</span><span class='italic text-stone-400'>Saudara kembar Nakula. Raden Sadewa ini sangat terampil dalam bidang astronomi (ilmu perbintangan), sastra, dan dapat mengetahui kejadian yang akan datang karena ahli dalam ilmu perhitungan Jawa.</span>",
+                foto: "https://indonesiakaya.com/wp-content/uploads/2020/11/IMG0380.jpg"
+            },
+            Gatotkaca: {
+                nama: "Raden Gatotkaca",
+                senjata: "Pusaka: Aji Brajamusti & Kotang Antakusuma",
+                desc: "Ksatria gagah perkasa saking Pringgandani ingkang nggadahi kasekten otot kawat balung wesi saged mabur ing gegana tanpa swiwi.<br><br><span class='text-amber-500/80 block font-semibold text-[10px] uppercase mb-1'>Terjemahan Indonesia:</span><span class='italic text-stone-400'>Ksatria gagah perkasa dari Pringgandani yang memiliki kesaktian otot kawat tulang besi dan mampu terbang di angkasa tanpa sayap.</span>",
+                foto: "https://i.ytimg.com/vi/at46jEH2el0/maxresdefault.jpg"
+            },
+            Karna: {
+                nama: "Adipati Karna",
+                senjata: "Pusaka: Senjata Kunta Wijayadanu",
+                desc: "Raja Awangga ingkang mbela Hastinapura nggadahi kasekten jemparing (memanah) linuwih lan sumpah setia dumateng Duryudana.<br><br><span class='text-amber-500/80 block font-semibold text-[10px] uppercase mb-1'>Terjemahan Indonesia:</span><span class='italic text-stone-400'>Raja Awangga yang membela Hastinapura, memiliki kesaktian memanah yang luar biasa dan sumpah setia kepada Duryudana.</span>",
+                foto: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhpeU-B7hnPKL03seNnayIeqq_2XkXepkG22MJFLeLd-PWXU10R6WDQ65xR_GgQCWkEpbD3zIcY_vUueBhRzkb2Nqea6KLx2SXhGeoBqDF9INsUnYH745orb3weiM7chvZ23SOM_nqKQWo/s1600/Foto+Karna3.jpg"
+            },
+            Abimanyu: {
+                nama: "Raden Abimanyu",
+                senjata: "Pusaka: Wahyu Cakraningrat",
+                desc: "Putra Raden Janaka ingkang elok rupawan, kendel, lan nampi Wahyu Cakraningrat minangka wahyu kraton.<br><br><span class='text-amber-500/80 block font-semibold text-[10px] uppercase mb-1'>Terjemahan Indonesia:</span><span class='italic text-stone-400'>Putra Raden Arjuna yang berwajah tampan, pemberani, dan menerima Wahyu Cakraningrat sebagai tanda penerus tahta.</span>",
+                foto: "https://indonesiakaya.com/wp-content/uploads/2020/11/IMG2059.jpg"
+            },
+            Antasena: {
+                nama: "Raden Antasena",
+                senjata: "Pusaka: Cupu Madusena",
+                desc: "Putra kaping kalihipun Werkudara kaliyan Dewi Urangayu ingkang kagungan pusaka Upas Anta lan saged gesang wonten ing seganten.<br><br><span class='text-amber-500/80 block font-semibold text-[10px] uppercase mb-1'>Terjemahan Indonesia:</span><span class='italic text-stone-400'>Putra Werkudara dengan Dewi Urangayu yang memiliki pusaka Upas Anta and mampu hidup di lautan.</span>",
+                foto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkcutCROnhSA43VUwgrYTCfCK28m_14uYrnw&s"
+            },
+            Antareja: {
+                nama: "Raden Antareja",
+                senjata: "Kasekten: Upas Anta (Bisa Sakti)",
+                desc: "Putra pambajeng Werkudara ingkang saged mlesat ing njeron bumi lan nggadahi idu mawa upas sakti.<br><br><span class='text-amber-500/80 block font-semibold text-[10px] uppercase mb-1'>Terjemahan Indonesia:</span><span class='italic text-stone-400'>Putra sulung Werkudara (Bima) yang dapat amblas ke dalam bumi dan memiliki air liur berbisa sakti penumpas kejahatan.</span>",
+                foto: "https://kisuta.com/tiny_mce/plugins/imagemanager/files/Antareja1.jpg"
+            },
+            Irawan: {
+                nama: "Raden Irawan",
+                senjata: "Pusaka: Panah Kencana",
+                desc: "Putra Raden Janaka kaliyan Dewi Ulupi (putri naga) ingkang prigel sanget wonten ing paparangan.<br><br><span class='text-amber-500/80 block font-semibold text-[10px] uppercase mb-1'>Terjemahan Indonesia:</span><span class='italic text-stone-400'>Putra Raden Arjuna dengan Dewi Ulupi (putri naga) yang sangat lincah dan gagah berani di medan pertempuran.</span>",
+                foto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEmXt_KbUJIIb1-65j6-guQrupuzHo4_XK0A&s"
+            }
+        };
+
+        // Database Video Playlist - YouTube
+        const databaseVideo = [
+            {
+                id: 1,
+                judul: "Pandawa Nawasena - WO Bharata",
+                sumber: "Bakti Budaya Djarum Foundation",
+                tipe: "youtube", 
+                embedId: "lEXNXbvQ1IY", 
+            },
+            {
+                id: 2,
+                judul: "Lakon Anoman Obong",
+                sumber: "WO Sriwedari Surakarta",
+                tipe: "youtube",
+                embedId: "HXcZX0BKZqQ",
+            },
+            {
+                id: 3,
+                judul: "Lakon Abimanyu Kembar",
+                sumber: "Wayang Orang Sriwedari",
+                tipe: "youtube",
+                embedId: "8AZLH2lpJIs", 
+            },
+            {
+                id: 4,
+                judul: "Lakon Gatotkaca Gugur",
+                sumber: "Wayang Orang Bharata",
+                tipe: "youtube",
+                embedId: "Aa97ygQkwxc",
+            }
+        ];
+
+        // Database Kuis Standard: 10 Soal Lengkap
+        const defaultDatabaseKuis = [
+            {
+                foto: "https://i.ytimg.com/vi/at46jEH2el0/maxresdefault.jpg",
+                jawabanBenar: "Raden Gatotkaca",
+                pilihan: ["Raden Abimanyu", "Raden Gatotkaca", "Raden Antareja", "Raden Pancawala"],
+                petunjuk: "Ksatria gagah sekti mandraguna saking Pringgandani ingkang saged mabur tanpa swiwi lan nggadahi otot kawat balung wesi.",
+                petunjukId: "Ksatria gagah perkasa dari Pringgandani yang bisa terbang tanpa sayap dan memiliki otot kawat tulang besi.",
+                petunjukEkstra: "Piyambakipun putra saking Werkudara lan Dewi Arimbi / Ia adalah putra dari Werkudara (Bima) and Dewi Arimbi."
+            },
+            {
+                foto: "https://djarumfoundation.org/webcore/files/activities/63200f4fb45ba.webp",
+                jawabanBenar: "Prabu Puntadewa",
+                pilihan: ["Prabu Puntadewa", "Raden Janaka", "Raden Nakula", "Raden Werkudara"],
+                petunjuk: "Pambajeng Pandawa ingkang sabar, jujur, nggadahi rah pethak lan jumeneng nata wonten ing Amarta.",
+                petunjukId: "Sulung Pandawa yang sabar, jujur, berdarah putih dan bertahta sebagai raja di Amarta.",
+                petunjukEkstra: "Nggadahi pusaka agung Jamus Kalimasada / Memiliki pusaka agung Jamus Kalimasada."
+            },
+            {
+                foto: "https://indonesiakaya.com/wp-content/uploads/2020/11/IMG8340A.jpg",
+                jawabanBenar: "Raden Werkudara",
+                pilihan: ["Raden Janaka", "Raden Nakula", "Raden Werkudara", "Raden Sadewa"],
+                petunjuk: "Pandawa nomer kalih ingkang gagah, nggadahi Gada Rujakpolo lan Kuku Pancanaka.",
+                petunjukId: "Pandawa nomor dua yang gagah, memiliki senjata Gada Rujakpolo dan kuku Pancanaka.",
+                petunjukEkstra: "Mboten nate ngginakaken basa krama dhumateng sinten kemawon kajaba Dewa Ruci. / Tidak pernah menggunakan bahasa halus (krama) kepada siapapun kecuali Dewa Ruci."
+            },
+            {
+                foto: "https://indonesiakaya.com/wp-content/uploads/2020/11/IMG19453.jpg",
+                jawabanBenar: "Raden Janaka",
+                pilihan: ["Raden Janaka", "Prabu Kresna", "Adipati Karna", "Boma Narakasura"],
+                petunjuk: "Penengah Pandawa ingkang elok rupawan, prigel sanget jemparing lan nggadahi Panah Pasupati.",
+                petunjukId: "Penengah Pandawa yang berparas sangat tampan, ahli memanah dan memiliki Panah Pasupati.",
+                petunjukEkstra: "Jumeneng ksatria wonten ing Madukara / Menjadi ksatria yang bertempat tinggal di Madukara."
+            },
+            {
+                foto: "https://indonesiakaya.com/wp-content/uploads/2020/11/IMG0380.jpg",
+                jawabanBenar: "Raden Nakula",
+                pilihan: ["Raden Sadewa", "Raden Nakula", "Raden Janaka", "Raden Werkudara"],
+                petunjuk: "Sedherek kembaripun Sadewa, putra saking Dewi Madrim ingkang prigel sanget nambani lan ngrawat jaran.",
+                petunjukId: "Saudara kembar Sadewa, putra dari Dewi Madrim yang sangat mahir dalam pengobatan dan merawat kuda.",
+                petunjukEkstra: "Jumeneng ksatria wonten ing Sawojajar / Menjadi ksatria di Sawojajar."
+            },
+            {
+                foto: "https://indonesiakaya.com/wp-content/uploads/2020/11/IMG0380.jpg",
+                jawabanBenar: "Raden Sadewa",
+                pilihan: ["Raden Nakula", "Raden Janaka", "Raden Sadewa", "Prabu Puntadewa"],
+                petunjuk: "Sedherek kembaripun Nakula ingkang pinter sanget ing babagan astronomi, sastra, lan ilmu petungan Jawi.",
+                petunjukId: "Saudara kembar Nakula yang sangat pandai dalam bidang astronomi, sastra, dan ilmu perhitungan Jawa.",
+                petunjukEkstra: "Jumeneng ksatria wonten ing Bumiretawu / Menjadi ksatria di Bumiretawu."
+            },
+            {
+                foto: "https://indonesiakaya.com/wp-content/uploads/2020/11/IMG2059.jpg",
+                jawabanBenar: "Raden Abimanyu",
+                pilihan: ["Raden Gatotkaca", "Raden Abimanyu", "Raden Pancawala", "Raden Irawan"],
+                petunjuk: "Putra Raden Janaka kaliyan Dewi Subadra, ksatria ingkang nampi Wahyu Cakraningrat lan gugur ing Baratayuda.",
+                petunjukId: "Putra Raden Arjuna dengan Dewi Subadra, ksatria yang menerima Wahyu Cakraningrat dan gugur di Baratayuda.",
+                petunjukEkstra: "Nggadahi garwa Dewi Utari lan Dewi Sundari / Memiliki istri bernama Dewi Utari dan Dewi Sundari."
+            },
+            {
+                foto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkcutCROnhSA43VUwgrYTCfCK28m_14uYrnw&s",
+                jawabanBenar: "Raden Antasena",
+                pilihan: ["Raden Abimanyu", "Raden Pancawala", "Raden Antasena", "Raden Antareja"],
+                petunjuk: "Putra kaping kalihipun Werkudara kaliyan Dewi Urangayu ingkang kagungan pusaka Upas Anta lan saged gesang wonten ing seganten.",
+                petunjukId: "Putra kedua Bima dan Dewi Urangayu yang memiliki pusaka Upas Anta dan dapat hidup di lautan.",
+                petunjukEkstra: "badanipun ngandhut racun kasekten lan boten tedhas gaman biasa / Tubuhnya mengandung racun kesaktian dan tidak mempan terhadap senjata biasa."
+            },
+            {
+                foto: "https://kisuta.com/tiny_mce/plugins/imagemanager/files/Antareja1.jpg",
+                jawabanBenar: "Raden Antareja",
+                pilihan: ["Raden Antasena", "Raden Gatotkaca", "Raden Antareja", "Raden Abimanyu"],
+                petunjuk: "Putra pambajeng Raden Werkudara kaliyan Dewi Nagagini ingkang saged mlesat ing njeron bumi lan nggadahi tawa sakti Upas Anta.",
+                petunjukId: "Putra sulung Raden Werkudara dengan Dewi Nagagini yang bisa amblas ke dalam bumi dan memiliki bisa sakti Upas Anta.",
+                petunjukEkstra: "Saged mejahi mungsuh kanthi ndilat tilas telapak sukunipun / Dapat membunuh musuh dengan menjilati bekas telapak kakinya."
+            },
+            {
+                foto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEmXt_KbUJIIb1-65j6-guQrupuzHo4_XK0A&s",
+                jawabanBenar: "Raden Irawan",
+                pilihan: ["Raden Irawan", "Raden Abimanyu", "Raden Pancawala", "Raden Gatotkaca"],
+                petunjuk: "Putra Raden Janaka kaliyan Dewi Ulupi (putri dewa ula) ingkang nggadahi rupa bagus lan keprigelan linuwih.",
+                petunjukId: "Putra Raden Arjuna dengan Dewi Ulupi (putri dewa ular) yang berwajah tampan dan memiliki ketangkasan luar biasa.",
+                petunjukEkstra: "Gugur ing perang Baratayuda dipunpejahi dening raseksa ditya Kalasrenggi. / Gugur di perang Baratayuda dibunuh oleh raksasa Kalasrenggi."
+            }
+        ];
+
+        // Database Kuis dinamis
+        let databaseKuis = JSON.parse(JSON.stringify(defaultDatabaseKuis));
+
+        // State kagem Kuis lan Dolanan
+        let kuisSkor = 0;
+        let kuisIndexAktif = 0;
+        let kuisSudahMenjawab = false;
+        let kuisNyawa = 3;             // Nyawa Bawaan (Hearts)
+        let kuisWaktuSisa = 15;        // Durasi Waktu Bawaan (Seconds)
+        let kuisTimerInterval = null;  // Interval kuis timer
+        
+        // State Bantuan (Lifelines)
+        let lifelineFiftyUsed = false;
+        let lifelineClueUsed = false;
+        let lifelineSkipUsed = false;
+
+        // State Kartu Paraga sing Kebukak (Unlocked Cards)
+        let unlockedCharacters = [];
+
+        // State kagem Video
+        let videoAktifId = 1;
+
+        // URL Default Latar
+        const defaultLatarTeater = "https://images.unsplash.com/photo-1514306191717-452ec28c7814?auto=format&fit=crop&w=1200&q=80";
+        let urlLatarTeater = defaultLatarTeater;
+
+
+        // ==========================================
+        // SISTEM KESALAHAN GAMBAR GLOBAL (CSP COMPLIANT)
+        // ==========================================
+        // Menggunakan event capturing phase untuk menangkap error pemuatan gambar di browser secara aman tanpa inline onerror
+        window.addEventListener('error', function(event) {
+            if (event.target.tagName === 'IMG') {
+                const img = event.target;
+                
+                if (img.id === 'kuis-foto-tokoh') {
+                    img.classList.add("hidden");
+                    const fallbackEl = document.getElementById("kuis-foto-fallback");
+                    if (fallbackEl) fallbackEl.classList.remove("hidden");
+                } else if (img.id === 'main-video-img') {
+                    // Jika hqdefault youtube gagal dimuat karena terblokir, gunakan poster kebudayaan lokal terpercaya
+                    img.src = "https://images.unsplash.com/photo-1514306191717-452ec28c7814?auto=format&fit=crop&w=600&q=80";
+                } else {
+                    // Penanganan rupa ksatria ensiklopedia
+                    const namaKsatria = img.getAttribute('alt') || 'Yudhistira';
+                    const fallbacks = {
+                        Yudhistira: `<svg class="w-20 h-20 mx-auto text-amber-500" viewBox="0 0 100 100" fill="currentColor"><circle cx="50" cy="30" r="14" fill="none" stroke="currentColor" stroke-width="2"/><path d="M50 44 L50 80 M35 55 L65 55 M50 80 L35 95 M50 80 L65 95" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M42 22 C45 15, 55 15, 58 22 L50 28 Z" fill="currentColor"/></svg>`,
+                        Bima: `<svg class="w-20 h-20 mx-auto text-amber-500" viewBox="0 0 100 100" fill="currentColor"><circle cx="50" cy="30" r="13" fill="none" stroke="currentColor" stroke-width="2"/><path d="M50 43 L50 80 M38 52 L62 52 M50 80 L38 95 M50 80 L62 95" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`,
+                        Arjuna: `<svg class="w-20 h-20 mx-auto text-amber-500" viewBox="0 0 100 100" fill="currentColor"><circle cx="50" cy="30" r="12" fill="none" stroke="currentColor" stroke-width="2"/><path d="M50 42 L50 80 M38 52 L62 52 M50 80 L38 95 M50 80 L62 95" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`,
+                        Nakula: `<svg class="w-20 h-20 mx-auto text-amber-500" viewBox="0 0 100 100" fill="currentColor"><circle cx="50" cy="30" r="14" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M50 44 L50 80" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+                        Sadewa: `<svg class="w-20 h-20 mx-auto text-amber-500" viewBox="0 0 100 100" fill="currentColor"><circle cx="50" cy="30" r="14" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M50 44 L50 80" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`
+                    };
+                    img.parentNode.outerHTML = `
+                        <div class="flex items-center justify-center h-48 w-full bg-stone-900 rounded-xl border border-stone-800 mb-4 shadow-inner">
+                            <div class="text-center">
+                                ${fallbacks[namaKsatria] || fallbacks['Yudhistira']}
+                                <span class="text-[9px] text-stone-550 block mt-2">Gambar Cadangan</span>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+        }, true);
+
+
+        // ==========================================
+        // FUNGSI NAVIGASI UTAMA
+        // ==========================================
+        function bukaEdukasiWayang() {
+            const landing = document.getElementById("landing-page");
+            landing.classList.add("opacity-0", "scale-95");
+            
+            setTimeout(() => {
+                landing.classList.add("hidden");
+                const edukasiView = document.getElementById("edukasi-view");
+                edukasiView.classList.remove("hidden");
+                
+                tampilInfoKsatria('Yudhistira');
+                buatPlaylistVideo();
+                updateActiveVideoThumbnail(); // Muat gambar thumbnail video pertama
+
+                edukasiView.classList.add("opacity-0", "scale-95");
+                setTimeout(() => {
+                    edukasiView.classList.remove("opacity-0", "scale-95");
+                    edukasiView.classList.add("transition-all", "duration-500", "opacity-100", "scale-100");
+                }, 50);
+            }, 300);
+
+            munculkanToast("📚 Sugeng rawuh ing Pendopo Edukasi Wayang Orang", "📚 Selamat datang di Pendopo Edukasi Wayang Orang");
+        }
+
+        function bukaGameWayang() {
+            const landing = document.getElementById("landing-page");
+            landing.classList.add("opacity-0", "scale-95");
+            
+            setTimeout(() => {
+                landing.classList.add("hidden");
+                const gameView = document.getElementById("game-view");
+                gameView.classList.remove("hidden");
+
+                gameView.classList.add("opacity-0", "scale-95");
+                setTimeout(() => {
+                    gameView.classList.remove("opacity-0", "scale-95");
+                    gameView.classList.add("transition-all", "duration-500", "opacity-100", "scale-100");
+                    
+                    mulaiKuisUlang();
+                }, 100);
+            }, 300);
+
+            munculkanToast("🧩 Sumangga kersa nyobi uji wawasan panjenengan!", "🧩 Silakan uji wawasan kebudayaan Anda!");
+        }
+
+        function kembaliKeUtama() {
+            stopKuisTimer(); 
+            const edukasiView = document.getElementById("edukasi-view");
+            const gameView = document.getElementById("game-view");
+            const landing = document.getElementById("landing-page");
+
+            edukasiView.classList.add("opacity-0", "scale-95");
+            gameView.classList.add("opacity-0", "scale-95");
+
+            setTimeout(() => {
+                edukasiView.classList.add("hidden");
+                gameView.classList.add("hidden");
+                
+                landing.classList.remove("hidden");
+                setTimeout(() => {
+                    landing.classList.remove("opacity-0", "scale-95");
+                    landing.classList.add("opacity-100", "scale-100");
+                }, 50);
+            }, 300);
+        }
+
+        function keluarGameDanReset() {
+            kembaliKeUtama();
+        }
+
+
+        // ==========================================
+        // FITUR PLAYLIST LAN THUMBNAIL VIDEO (AMAN PREVIEW)
+        // ==========================================
+        function buatPlaylistVideo() {
+            const playlistContainer = document.getElementById("video-playlist-container");
+            if (playlistContainer) {
+                playlistContainer.innerHTML = "";
+
+                databaseVideo.forEach(vid => {
+                    const isActive = vid.id === videoAktifId;
+                    const activeClasses = isActive 
+                        ? "border-amber-500 bg-amber-500/15 text-amber-300 shadow-md ring-1 ring-amber-500/35" 
+                        : "border-stone-800 bg-stone-950/60 text-stone-400 hover:border-amber-500/40 hover:text-white";
+
+                    playlistContainer.innerHTML += `
+                        <button onclick="pilihVideoDariPlaylist(${vid.id})" class="p-3.5 rounded-xl border text-left flex flex-col justify-between transition-all duration-300 gap-1.5 ${activeClasses}">
+                            <div class="flex items-start justify-between w-full gap-2">
+                                <span class="font-bold text-xs line-clamp-1 flex items-center gap-1.5">
+                                    <span class="text-amber-500 text-sm">🎦</span> ${vid.judul}
+                                </span>
+                            </div>
+                            <span class="text-[10px] text-stone-550 line-clamp-1 italic">${vid.sumber}</span>
+                        </button>
+                    `;
+                });
+            }
+        }
+
+        function pilihVideoDariPlaylist(idVideo) {
+            videoAktifId = idVideo;
+            buatPlaylistVideo();
+            updateActiveVideoThumbnail(); // Ganti thumbnail ing pamuter utama
+        }
+
+        // Fungsi kagem nganyari Thumbnail ing pamuter utama (tinimbang iframe)
+        function updateActiveVideoThumbnail() {
+            const thumbnailContainer = document.getElementById("video-thumbnail-container");
+            const playLink = document.getElementById("video-play-link");
+            const titleDisplay = document.getElementById("display-video-title");
+            const sourceDisplay = document.getElementById("display-video-source");
+            
+            const videoTerpilih = databaseVideo.find(v => v.id === videoAktifId);
+
+            if (thumbnailContainer && videoTerpilih) {
+                // Menggunakan hqdefault.jpg yang 100% selalu ada untuk semua video youtube, bebas error pemuatan
+                const thumbnailUrl = `https://img.youtube.com/vi/${videoTerpilih.embedId}/hqdefault.jpg`;
+                
+                thumbnailContainer.innerHTML = `
+                    <img id="main-video-img" src="${thumbnailUrl}" alt="${videoTerpilih.judul}" class="w-full h-full object-cover animate-fade-in">
+                `;
+            }
+
+            if (playLink && videoTerpilih) {
+                // Atur tautan kagem mbuka langsung ing YouTube
+                playLink.href = `https://www.youtube.com/watch?v=${videoTerpilih.embedId}`;
+            }
+
+            if (titleDisplay && sourceDisplay && videoTerpilih) {
+                titleDisplay.innerText = videoTerpilih.judul;
+                sourceDisplay.innerText = `Sumber: ${videoTerpilih.sumber}`;
+            }
+        }
+
+        // ==========================================
+        // FUNGSI ENSYKLOPEDIA PANDAWA LIMA
+        // ==========================================
+        function tampilInfoKsatria(namaKsatria) {
+            const tombols = ["Yudhistira", "Bima", "Arjuna", "Nakula", "Sadewa"];
+            tombols.forEach(t => {
+                const btn = document.getElementById(`tab-${t}`);
+                if (btn) {
+                    btn.className = "py-2 px-1 text-[10px] font-bold rounded-lg bg-stone-950 text-amber-400 hover:bg-stone-900 transition-all border border-stone-800 truncate";
+                }
+            });
+
+            const activeBtn = document.getElementById(`tab-${namaKsatria}`);
+            if (activeBtn) {
+                activeBtn.className = "py-2 px-1 text-[10px] font-bold rounded-lg bg-amber-500 text-stone-950 transition-all border border-amber-400 shadow-md truncate";
+            }
+
+            const data = databaseKsatria[namaKsatria];
+            const visualKsatria = document.getElementById("visual-ksatria-svg");
+            if (visualKsatria) {
+                visualKsatria.innerHTML = `
+                    <div class="relative w-full h-48 overflow-hidden rounded-xl border border-amber-500/30 mb-4 bg-stone-900 shadow-lg group">
+                        <img src="${data.foto}" alt="${namaKsatria}" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 animate-fade-in">
+                        <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-transparent opacity-60"></div>
+                    </div>
+                `;
+            }
+            
+            const namaKsatriaEl = document.getElementById("nama-ksatria");
+            const senjataKsatriaEl = document.getElementById("senjata-ksatria");
+            const deskripsiKsatriaEl = document.getElementById("deskripsi-ksatria");
+
+            if (namaKsatriaEl) namaKsatriaEl.innerText = data.nama;
+            if (senjataKsatriaEl) senjataKsatriaEl.innerText = data.senjata;
+            if (deskripsiKsatriaEl) deskripsiKsatriaEl.innerHTML = data.desc;
+
+            munculkanToast("✨ Rupa Paraga: " + data.nama, "✨ Rupa Tokoh: " + data.nama);
+        }
+
+
+        // ==========================================
+        // FITUR GAME TEBAK TOKOH WAYANG
+        // ==========================================
+        function mulaiKuisUlang() {
+            kuisSkor = 0;
+            kuisIndexAktif = 0;
+            kuisNyawa = 3; 
+            
+            lifelineFiftyUsed = false;
+            lifelineClueUsed = false;
+            lifelineSkipUsed = false;
+
+            updateLifelinesUI();
+
+            const resultScreen = document.getElementById("kuis-result-screen");
+            if (resultScreen) resultScreen.classList.add("hidden");
+            const btnNext = document.getElementById("btn-kuis-selanjutnya");
+            if (btnNext) btnNext.classList.add("hidden");
+            const skorEl = document.getElementById("skor-kuis-sekarang");
+            if (skorEl) {
+                skorEl.innerHTML = `<span>Nilai: ${kuisSkor}</span><span class="text-[8px] font-normal italic lowercase leading-none"> (skor)</span>`;
+            }
+
+            updateNyawaVisual();
+            renderAlbumParaga(); 
+            tampilkanSoalKuis();
+        }
+
+        function updateLifelinesUI() {
+            const btnFifty = document.getElementById("btn-lifeline-fifty");
+            const btnClue = document.getElementById("btn-lifeline-clue");
+            const btnSkip = document.getElementById("btn-lifeline-skip");
+
+            if (btnFifty) {
+                btnFifty.disabled = lifelineFiftyUsed;
+                if (lifelineFiftyUsed) {
+                    btnFifty.classList.add("opacity-40", "cursor-not-allowed");
+                } else {
+                    btnFifty.classList.remove("opacity-40", "cursor-not-allowed");
+                }
+            }
+            if (btnClue) {
+                btnClue.disabled = lifelineClueUsed;
+                if (lifelineClueUsed) {
+                    btnClue.classList.add("opacity-40", "cursor-not-allowed");
+                } else {
+                    btnClue.classList.remove("opacity-40", "cursor-not-allowed");
+                }
+            }
+            if (btnSkip) {
+                btnSkip.disabled = lifelineSkipUsed;
+                if (lifelineSkipUsed) {
+                    btnSkip.classList.add("opacity-40", "cursor-not-allowed");
+                } else {
+                    btnSkip.classList.remove("opacity-40", "cursor-not-allowed");
+                }
+            }
+        }
+
+        function updateNyawaVisual() {
+            const nyawaEl = document.getElementById("kuis-nyawa-hearts");
+            if (nyawaEl) {
+                let hearts = "";
+                for (let i = 1; i <= 3; i++) {
+                    hearts += (i <= kuisNyawa) ? "❤️" : "🖤";
+                }
+                nyawaEl.innerText = hearts;
+            }
+        }
+
+        function tampilkanSoalKuis() {
+            kuisSudahMenjawab = false;
+            const btnNext = document.getElementById("btn-kuis-selanjutnya");
+            if (btnNext) btnNext.classList.add("hidden");
+
+            const dataSoal = databaseKuis[kuisIndexAktif];
+            const totalSoal = databaseKuis.length;
+
+            const progressText = document.getElementById("kuis-progress-text");
+            if (progressText) progressText.innerText = "Pitakonan " + (kuisIndexAktif + 1) + " saking " + totalSoal;
+            
+            const progressBar = document.getElementById("kuis-progress-bar");
+            if (progressBar) progressBar.style.width = ((kuisIndexAktif + 1) / totalSoal) * 100 + "%";
+
+            // Pastikan elemen kuis-foto-tokoh diatur secara aman
+            const imgEl = document.getElementById("kuis-foto-tokoh");
+            const fallbackEl = document.getElementById("kuis-foto-fallback");
+            
+            if (imgEl) {
+                imgEl.classList.remove("hidden");
+                imgEl.src = dataSoal.foto;
+                imgEl.alt = dataSoal.jawabanBenar;
+            }
+            if (fallbackEl) {
+                fallbackEl.classList.add("hidden"); 
+            }
+
+            const petunjukEl = document.getElementById("kuis-petunjuk");
+            const petunjukIdEl = document.getElementById("kuis-petunjuk-id");
+            if (petunjukEl) petunjukEl.innerText = `"${dataSoal.petunjuk}"`;
+            if (petunjukIdEl) petunjukIdEl.innerText = `"${dataSoal.petunjukId}"`;
+
+            const containerOptions = document.getElementById("kuis-options-container");
+            if (containerOptions) {
+                containerOptions.innerHTML = "";
+
+                dataSoal.pilihan.forEach(namaOpsi => {
+                    const btn = document.createElement("button");
+                    btn.className = "w-full py-3.5 px-5 bg-[#170e0a] border border-amber-500/20 hover:border-amber-400 hover:bg-amber-950/20 text-sm font-bold text-slate-100 rounded-xl transition-all duration-300 text-left flex justify-between items-center group shadow";
+                    btn.onclick = () => verifikasiJawabanKuis(namaOpsi, btn);
+                    btn.innerHTML = `
+                        <span>${namaOpsi}</span>
+                        <span class="opacity-0 group-hover:opacity-100 transition-opacity text-amber-500 text-xs font-semibold">Pilih &raquo;</span>
+                    `;
+                    containerOptions.appendChild(btn);
+                });
+            }
+
+            updateLifelinesUI();
+            startKuisTimer();
+        }
+
+        function startKuisTimer() {
+            stopKuisTimer(); 
+            kuisWaktuSisa = 15;
+            
+            const timerText = document.getElementById("kuis-timer-text");
+            const timerBar = document.getElementById("kuis-timer-bar");
+            
+            if (timerText) timerText.innerText = kuisWaktuSisa;
+            if (timerBar) {
+                timerBar.style.transition = "none";
+                timerBar.style.width = "100%";
+                setTimeout(() => {
+                    timerBar.style.transition = "width 15s linear";
+                    timerBar.style.width = "0%";
+                }, 50);
+            }
+
+            kuisTimerInterval = setInterval(() => {
+                kuisWaktuSisa--;
+                if (timerText) timerText.innerText = kuisWaktuSisa;
+
+                if (kuisWaktuSisa <= 0) {
+                    stopKuisTimer();
+                    waktuKuisHabis(); 
+                }
+            }, 1000);
+        }
+
+        function stopKuisTimer() {
+            if (kuisTimerInterval) {
+                clearInterval(kuisTimerInterval);
+                kuisTimerInterval = null;
+            }
+            const timerBar = document.getElementById("kuis-timer-bar");
+            if (timerBar) {
+                timerBar.style.transition = "none";
+            }
+        }
+
+        function waktuKuisHabis() {
+            if (kuisSudahMenjawab) return;
+            kuisSudahMenjawab = true;
+
+            munculkanToast("⏰ Wanci telas! Wangsulan dianggep lepat.", "⏰ Waktu habis! Jawaban dianggap salah.");
+            
+            kuisNyawa--;
+            updateNyawaVisual();
+
+            const dataSoal = databaseKuis[kuisIndexAktif];
+            const kontainerTombol = document.getElementById("kuis-options-container");
+            if (!kontainerTombol) return;
+            const seluruhTombol = kontainerTombol.getElementsByTagName("button");
+
+            for (let btn of seluruhTombol) {
+                btn.disabled = true;
+                if (btn.innerText.includes(dataSoal.jawabanBenar)) {
+                    btn.className = "w-full py-3.5 px-5 rounded-xl bg-[#14b8a6]/20 border border-[#14b8a6] text-teal-350 text-sm font-bold transition-all flex justify-between items-center";
+                    btn.innerHTML += `<span class="text-teal-400 text-[10px] font-bold">(Wangsulan Leres / Jawaban Benar)</span>`;
+                }
+            }
+
+            if (kuisNyawa <= 0) {
+                setTimeout(() => {
+                    tampilkanHasilKuisAkhir(true); 
+                }, 1500);
+                return;
+            }
+
+            const btnNext = document.getElementById("btn-kuis-selanjutnya");
+            if (btnNext) btnNext.classList.remove("hidden");
+        }
+
+        function verifikasiJawabanKuis(pilihanUser, tombolDipilih) {
+            if (kuisSudahMenjawab) return;
+            kuisSudahMenjawab = true;
+            stopKuisTimer(); 
+
+            const dataSoal = databaseKuis[kuisIndexAktif];
+            const kontainerTombol = document.getElementById("kuis-options-container");
+            if (!kontainerTombol) return;
+            const seluruhTombol = kontainerTombol.getElementsByTagName("button");
+
+            for (let btn of seluruhTombol) {
+                btn.disabled = true;
+            }
+
+            if (pilihanUser === dataSoal.jawabanBenar) {
+                kuisSkor += 10;
+                const skorEl = document.getElementById("skor-kuis-sekarang");
+                if (skorEl) {
+                    skorEl.innerHTML = `<span>Nilai: ${kuisSkor}</span><span class="text-[8px] font-normal italic lowercase leading-none"> (skor)</span>`;
+                }
+                
+                tombolDipilih.className = "w-full py-3.5 px-5 rounded-xl bg-teal-500/20 border-2 border-teal-500 text-teal-300 text-sm font-bold transition-all flex justify-between items-center";
+                tombolDipilih.innerHTML += `<span class="bg-teal-500 text-stone-950 text-[10px] px-2 py-0.5 rounded-full font-black">LERES ✅</span>`;
+                munculkanToast("🎉 Sugeng! Wangsulan panjenengan Leres.", "🎉 Selamat! Jawaban Anda Benar.");
+
+                unlockCharacterInAlbum(dataSoal.jawabanBenar);
+
+            } else {
+                kuisNyawa--;
+                updateNyawaVisual();
+
+                tombolDipilih.className = "w-full py-3.5 px-5 rounded-xl bg-red-500/20 border-2 border-red-500 text-red-300 text-sm font-bold transition-all flex justify-between items-center";
+                tombolDipilih.innerHTML += `<span class="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-full font-black">LEPAT ❌</span>`;
+                
+                for (let btn of seluruhTombol) {
+                    if (btn.innerText.includes(dataSoal.jawabanBenar)) {
+                        btn.className = "w-full py-3.5 px-5 rounded-xl bg-amber-500/10 border border-amber-500/50 text-amber-350 text-sm font-bold transition-all flex justify-between items-center";
+                        btn.innerHTML += `<span class="text-amber-400 text-[10px] font-bold">(Wangsulan Leres / Jawaban Benar)</span>`;
+                    }
+                }
+                munculkanToast("😢 Wangsulan lepat, sumangga dipun-sinau malih.", "😢 Jawaban salah, mari belajar lagi.");
+            }
+
+            if (kuisNyawa <= 0) {
+                setTimeout(() => {
+                    tampilkanHasilKuisAkhir(true); 
+                }, 1500);
+                return;
+            }
+
+            const btnNext = document.getElementById("btn-kuis-selanjutnya");
+            if (btnNext) btnNext.classList.remove("hidden");
+        }
+
+        function soalSelanjutnya() {
+            kuisIndexAktif++;
+            if (kuisIndexAktif < databaseKuis.length) {
+                tampilkanSoalKuis();
+            } else {
+                tampilkanHasilKuisAkhir(false); 
+            }
+        }
+
+        function tampilkanHasilKuisAkhir(isKalah = false) {
+            stopKuisTimer(); 
+            
+            const resultScreen = document.getElementById("kuis-result-screen");
+            const finalScoreEl = document.getElementById("kuis-final-score");
+            const finalRankEl = document.getElementById("kuis-final-rank");
+            const iconEl = document.getElementById("kuis-result-icon");
+            const titleEl = document.getElementById("kuis-result-title");
+            const subtitleEl = document.getElementById("kuis-result-subtitle");
+
+            if (resultScreen) resultScreen.classList.remove("hidden");
+            if (finalScoreEl) finalScoreEl.innerText = kuisSkor;
+
+            if (isKalah) {
+                if (iconEl) iconEl.innerText = "💔";
+                if (titleEl) {
+                    titleEl.innerText = "Kesempatan Telas!";
+                    titleEl.className = "text-3xl font-black font-jawa text-red-500";
+                }
+                if (subtitleEl) subtitleEl.innerText = "(Kesempatan Habis!)";
+                if (finalRankEl) finalRankEl.innerText = `"Cantrik Magang" - Sisa nyawa panjenengan telas. Ayo jajal tanding kuis malih! / Sisa nyawa Anda habis. Mari coba kuis lagi!`;
+                munculkanToast("💔 Nyawa panjenengan telas. Cobi malih!", "💔 Nyawa Anda habis. Coba lagi!");
+            } else {
+                if (iconEl) iconEl.innerText = "🏆";
+                if (titleEl) {
+                    titleEl.innerText = "Asil Evaluasi Kabudayan";
+                    titleEl.className = "text-3xl font-black font-jawa text-amber-400";
+                }
+                if (subtitleEl) subtitleEl.innerText = "(Hasil Evaluasi Kebudayaan)";
+                
+                if (finalRankEl) {
+                    if (kuisSkor >= 100) {
+                        finalRankEl.innerText = `"Mahapatih Kabudayan" - Pangertosan panjenengan ngenani paraga wayang sampurna sanget! / Pemahaman Anda mengenai tokoh wayang sangat sempurna!`;
+                    } else if (kuisSkor >= 60) {
+                        finalRankEl.innerText = `"Pujangga Anom" - Panjenengan nggadahi wawasan wayang ingkang kiyat! / Anda memiliki wawasan tokoh wayang yang kuat!`;
+                    } else {
+                        finalRankEl.innerText = `"Cantrik Kabudayan" - Sumangga sinau malih supados wawasanipun tambah jembar! / Silakan belajar lagi agar wawasan Anda semakin luas!`;
+                    }
+                }
+                munculkanToast("🏆 Sugeng! Panjenengan saged ngrampungi kuis.", "🏆 Selamat! Anda berhasil menyelesaikan kuis.");
+            }
+        }
+
+
+        // ==========================================
+        // FITUR KANCING PITULUNGAN (LIFELINES MECHANICS)
+        // ==========================================
+        function useLifelineFifty() {
+            if (lifelineFiftyUsed || kuisSudahMenjawab) return;
+            lifelineFiftyUsed = true;
+            updateLifelinesUI();
+
+            const dataSoal = databaseKuis[kuisIndexAktif];
+            const containerOptions = document.getElementById("kuis-options-container");
+            if (!containerOptions) return;
+            const seluruhTombol = containerOptions.getElementsByTagName("button");
+
+            let opsiSalahDielimini = [];
+            for (let btn of seluruhTombol) {
+                const opsiNama = btn.querySelector("span").innerText;
+                if (opsiNama !== dataSoal.jawabanBenar) {
+                    opsiSalahDielimini.push(btn);
+                }
+            }
+
+            opsiSalahDielimini.sort(() => Math.random() - 0.5);
+            opsiSalahDielimini[0].classList.add("opacity-20", "pointer-events-none");
+            opsiSalahDielimini[0].disabled = true;
+            opsiSalahDielimini[1].classList.add("opacity-20", "pointer-events-none");
+            opsiSalahDielimini[1].disabled = true;
+
+            munculkanToast("✂️ Bantuan 50:50 ditrapaken! 2 wangsulan lepat dipunbuang.", "✂️ Bantuan 50:50 diterapkan! 2 jawaban salah dibuang.");
+        }
+
+        // ==========================================
+        // FITUR KELUAR / RESET GAME
+        // ==========================================
+        function useLifelineClue() {
+            if (lifelineClueUsed || kuisSudahMenjawab) return;
+            lifelineClueUsed = true;
+            updateLifelinesUI();
+
+            const dataSoal = databaseKuis[kuisIndexAktif];
+            const petunjukEl = document.getElementById("kuis-petunjuk");
+            const petunjukIdEl = document.getElementById("kuis-petunjuk-id");
+            if (petunjukEl) {
+                petunjukEl.innerText = `💡 Pitedah Ekstra: ${dataSoal.petunjukEkstra}`;
+            }
+            if (petunjukIdEl) {
+                petunjukIdEl.innerText = ""; 
+            }
+
+            munculkanToast("🔍 Pitedah ekstra sampun kabukak ing layar!", "🔍 Petunjuk ekstra telah terbuka di layar!");
+        }
+
+        function useLifelineSkip() {
+            if (lifelineSkipUsed || kuisSudahMenjawab) return;
+            lifelineSkipUsed = true;
+            updateLifelinesUI();
+            stopKuisTimer();
+
+            munculkanToast("⏭️ Pitakonan dipun-liwati kanthi aman!", "⏭️ Pertanyaan dilewati dengan aman!");
+            
+            kuisIndexAktif++;
+            if (kuisIndexAktif < databaseKuis.length) {
+                tampilkanSoalKuis();
+            } else {
+                tampilkanHasilKuisAkhir(false);
+            }
+        }
+
+
+        // ==========================================
+        // SISTEM KITAB PUSAKA (ALBUM GALLERY)
+        // ==========================================
+        const albumParagaDatabase = [
+            { id: "Yudhistira", nama: "Prabu Puntadewa", jvPeran: "Raja pambajeng Amarta ingkang suci, adil, lan sabar.", idPeran: "Raja tertua Amarta yang suci, adil, dan sabar." },
+            { id: "Bima", nama: "Raden Werkudara", jvPeran: "Ksatria gagah perkasa sing mbelani bebener nggawa Gada.", idPeran: "Ksatria gagah perkasa pembela kebenaran bersenjata Gada." },
+            { id: "Arjuna", nama: "Raden Janaka", jvPeran: "Lantip ahli jemparing ingkang alus lan asor budine.", idPeran: "Ahli memanah yang halus budi pekertinya dan rendah hati." },
+            { id: "Nakula", nama: "Raden Nakula", jvPeran: "Ksatria kembar kemayu prigel ing ilmu tamba jaran.", idPeran: "Ksatria kembar yang ahli dalam ilmu pengobatan herbal." },
+            { id: "Sadewa", nama: "Raden Sadewa", jvPeran: "Ksatria kembar pinter ilmu petungan lan lintang Jawi.", idPeran: "Ksatria kembar ahli astronomi dan perhitungan Jawa." },
+            { id: "Gatotkaca", nama: "Raden Gatotkaca", jvPeran: "Ksatria gagah sekti otot kawat balung wesi saged mabur.", idPeran: "Ksatria gagah perkasa otot kawat tulang besi dapat terbang." },
+            { id: "Abimanyu", nama: "Raden Abimanyu", jvPeran: "Putra Arjuna ingkang gagah, nampi Wahyu Cakraningrat.", idPeran: "Putra Arjuna yang gagah, menerima Wahyu Cakraningrat." },
+            { id: "Antasena", nama: "Raden Antasena", jvPeran: "Putra Werkudara ingkang saged gesang wonten ing seganten.", idPeran: "Putra Werkudara yang dapat hidup di lautan." },
+            { id: "Antareja", nama: "Raden Antareja", jvPeran: "Putra Werkudara sekti ingkang saged mlesat ing njeron bumi.", idPeran: "Putra Werkudara sakti yang mampu amblas ke dalam bumi." },
+            { id: "Irawan", nama: "Raden Irawan", jvPeran: "Putra Arjuna kaliyan dewi naga ingkang prigel perang.", idPeran: "Putra Arjuna dengan dewi naga yang terampil bertempur." }
+        ];
+
+        function unlockCharacterInAlbum(namaParaga) {
+            let paragaId = "";
+            if (namaParaga.includes("Yudhistira") || namaParaga.includes("Puntadewa")) paragaId = "Yudhistira";
+            else if (namaParaga.includes("Bima") || namaParaga.includes("Werkudara")) paragaId = "Bima";
+            else if (namaParaga.includes("Arjuna") || namaParaga.includes("Janaka")) paragaId = "Arjuna";
+            else if (namaParaga.includes("Nakula")) paragaId = "Nakula";
+            else if (namaParaga.includes("Sadewa")) paragaId = "Sadewa";
+            else if (namaParaga.includes("Gatotkaca")) paragaId = "Gatotkaca";
+            else if (namaParaga.includes("Abimanyu")) paragaId = "Abimanyu";
+            else if (namaParaga.includes("Antasena")) paragaId = "Antasena";
+            else if (namaParaga.includes("Antareja")) paragaId = "Antareja";
+            else if (namaParaga.includes("Irawan")) paragaId = "Irawan";
+
+            if (paragaId && !unlockedCharacters.includes(paragaId)) {
+                unlockedCharacters.push(paragaId);
+                renderAlbumParaga(); 
+                munculkanToast(`🏆 Paraga anyar kabukak ing Kitab Pusaka: ${namaParaga}`, `🏆 Tokoh baru terbuka di Kitab Pusaka: ${namaParaga}`);
+            }
+        }
+
+        function renderAlbumParaga() {
+            const albumContainer = document.getElementById("album-paraga-container");
+            if (!albumContainer) return;
+            albumContainer.innerHTML = "";
+
+            albumParagaDatabase.forEach(item => {
+                const isUnlocked = unlockedCharacters.includes(item.id);
+                const charData = databaseKsatria[item.id] || { foto: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=600&q=80", senjata: "Pusaka" };
+                
+                if (isUnlocked) {
+                    let bintangKasekten = "⭐⭐⭐⭐⭐";
+                    if (item.id === "Nakula" || item.id === "Sadewa") bintangKasekten = "⭐⭐⭐⭐";
+                    if (item.id === "Yudhistira") bintangKasekten = "⭐⭐⭐"; 
+
+                    let bintangWicaksana = "⭐⭐⭐⭐⭐";
+                    if (item.id === "Bima" || item.id === "Irawan") bintangWicaksana = "⭐⭐⭐"; 
+                    if (item.id === "Gatotkaca" || item.id === "Antareja") bintangWicaksana = "⭐⭐⭐⭐";
+
+                    albumContainer.innerHTML += `
+                        <div class="relative bg-gradient-to-b from-[#2a1b12] to-[#120a06] border-2 border-amber-500 rounded-3xl p-4 flex flex-col items-center justify-between text-center shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-[0_0_20px_rgba(245,158,11,0.4)] border-double group">
+                            <div class="absolute top-1 left-1 w-3 h-3 border-t border-l border-amber-500/40"></div>
+                            <div class="absolute top-1 right-1 w-3 h-3 border-t border-r border-amber-500/40"></div>
+                            <div class="absolute bottom-1 left-1 w-3 h-3 border-b border-l border-amber-500/40"></div>
+                            <div class="absolute bottom-1 right-1 w-3 h-3 border-b border-r border-amber-500/40"></div>
+                            
+                            <span class="absolute top-2 right-2 bg-gradient-to-r from-amber-600 to-yellow-500 text-stone-950 text-[7px] px-2 py-0.5 rounded-full font-black uppercase tracking-wider shadow">Mumpuni</span>
+                            
+                            <div class="w-full h-32 overflow-hidden rounded-2xl border border-amber-500/30 mb-2.5 bg-stone-900 relative shadow-inner">
+                                <img src="${charData.foto}" alt="${item.id}" class="w-full h-full object-cover object-top filter group-hover:brightness-110 transition-all duration-300 animate-fade-in">
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#120a06] via-transparent to-transparent opacity-80"></div>
+                            </div>
+
+                            <h5 class="text-xs font-black text-amber-400 font-jawa truncate w-full tracking-wide">${item.nama}</h5>
+                            
+                            <div class="text-[8px] bg-amber-500/10 text-amber-300 border border-amber-500/20 px-2 py-0.5 rounded-md font-bold mt-1.5 truncate max-w-full">
+                                ⚔️ ${charData.senjata.replace("Pusaka: ", "").replace("Peran: ", "").replace("Keahlian: ", "")}
+                            </div>
+
+                            <div class="w-full mt-3 space-y-1 text-left bg-black/40 p-2 rounded-xl border border-stone-800/60">
+                                <div class="flex justify-between items-center text-[8px] text-stone-400">
+                                    <span>Kasekten / Sakti:</span>
+                                    <span class="text-[7px]">${bintangKasekten}</span>
+                                </div>
+                                <div class="flex justify-between items-center text-[8px] text-stone-400">
+                                    <span>Wicaksana / Bijak:</span>
+                                    <span class="text-[7px]">${bintangWicaksana}</span>
+                                </div>
+                            </div>
+
+                            <div class="text-[9px] text-stone-300 line-clamp-2 mt-2 leading-normal font-medium">${item.jvPeran}</div>
+                            <div class="text-[8px] text-stone-550 italic line-clamp-1 mt-0.5 leading-none">${item.idPeran}</div>
+                        </div>
+                    `;
+                } else {
+                    albumContainer.innerHTML += `
+                        <div class="relative bg-gradient-to-b from-[#17110d]/50 to-[#0e0a08]/50 border border-stone-800 rounded-3xl p-4 flex flex-col items-center justify-center text-center opacity-50 select-none min-h-[290px] group transition-all duration-300 hover:border-amber-500/20 hover:opacity-70">
+                            <div class="w-12 h-12 bg-stone-950/80 rounded-full flex items-center justify-center mb-3 border border-stone-800 group-hover:scale-110 transition-transform">
+                                <span class="text-2xl filter grayscale">🔒</span>
+                            </div>
+                            <h5 class="text-xs font-bold text-stone-500 font-jawa truncate w-full">???</h5>
+                            <div class="text-[9px] text-stone-600 mt-3 leading-normal px-2">
+                                Mangsuli kuis kanthi leres kangge mbukak paraga punika.
+                            </div>
+                            <div class="text-[8px] text-stone-700 italic mt-1 leading-normal px-2">
+                                (Jawab kuis dengan benar untuk membuka tokoh ini.)
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+        }
+
+
+        // ==========================================
+        // FITUR KUSTOMISASI LATAR TEATER
+        // ==========================================
+        function bukaEditorLatar() {
+            const modal = document.getElementById("latar-editor-panel");
+            const inputUrl = document.getElementById("edit-latar-url");
+            if (modal && inputUrl) {
+                inputUrl.value = urlLatarTeater;
+                modal.classList.remove("hidden");
+            }
+        }
+
+        function tutupEditorLatar() {
+            const modal = document.getElementById("latar-editor-panel");
+            if (modal) modal.classList.add("hidden");
+        }
+
+        function simpanLatarEditor(event) {
+            event.preventDefault();
+            const inputUrl = document.getElementById("edit-latar-url");
+            const bgImageDiv = document.getElementById("landing-bg-image");
+
+            if (inputUrl && bgImageDiv) {
+                urlLatarTeater = inputUrl.value;
+                bgImageDiv.style.backgroundImage = `url('${urlLatarTeater}')`;
+                tutupEditorLatar();
+                munculkanToast("💾 Latar panggung teater kustom sampun dipun-gantos.", "💾 Latar panggung teater kustom telah diganti.");
+            }
+        }
+
+        function resetLatarDefault() {
+            const bgImageDiv = document.getElementById("landing-bg-image");
+            if (bgImageDiv) {
+                urlLatarTeater = defaultLatarTeater;
+                bgImageDiv.style.backgroundImage = `url('${urlLatarTeater}')`;
+                tutupEditorLatar();
+                munculkanToast("🔄 Latar panggung dipun-wangsulaken dhateng gawan.", "🔄 Latar panggung dikembalikan ke bawaan.");
+            }
+        }
+
+
+        // ==========================================
+        // FITUR PENDUKUNG: TOAST WARA-WARA
+        // ==========================================
+        let toastTimer;
+        function munculkanToast(pesanJv, pesanId) {
+            const toast = document.getElementById("custom-toast");
+            const toastJvText = document.getElementById("toast-message-jv");
+            const toastIdText = document.getElementById("toast-message-id");
+
+            if (toast && toastJvText && toastIdText) {
+                toastJvText.innerText = pesanJv;
+                toastIdText.innerText = `(${pesanId})`;
+                
+                clearTimeout(toastTimer);
+                
+                toast.classList.remove("translate-y-[-150%]");
+                toast.classList.add("translate-y-0");
+
+                toastTimer = setTimeout(() => {
+                    toast.classList.remove("translate-y-0");
+                    toast.classList.add("translate-y-[-150%]");
+                }, 3500);
+            }
+        }
+
+        window.onload = function() {
+            const bgImageDiv = document.getElementById("landing-bg-image");
+            if (bgImageDiv) {
+                bgImageDiv.style.backgroundImage = `url('${urlLatarTeater}')`;
+            }
+        }
+    </script>
+</body>
+</html>
